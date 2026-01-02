@@ -1,0 +1,465 @@
+@import "tailwindcss";
+
+:root {
+  /* Recyce Brand Colors - Eco Green Primary */
+  --color-primary-50: #e6f7ed;
+  --color-primary-100: #b3e6c9;
+  --color-primary-200: #80d5a5;
+  --color-primary-300: #4dc481;
+  --color-primary-400: #1ab35d;
+  /* Main eco green */
+  --color-primary-500: #159549;
+  --color-primary-600: #107735;
+  --color-primary-700: #0b5921;
+  --color-primary-800: #063b0d;
+  --color-primary-900: #011d00;
+
+  /* Neutral Colors */
+  --color-neutral-50: #f8f9fa;
+  --color-neutral-100: #f1f3f5;
+  --color-neutral-200: #e9ecef;
+  --color-neutral-300: #dee2e6;
+  --color-neutral-400: #ced4da;
+  --color-neutral-500: #adb5bd;
+  --color-neutral-600: #6c757d;
+  --color-neutral-700: #495057;
+  --color-neutral-800: #343a40;
+  --color-neutral-900: #212529;
+
+  /* Semantic Colors */
+  --color-success: #1ab35d;
+  --color-error: #dc3545;
+  --color-warning: #ffc107;
+  --color-info: #0dcaf0;
+
+  /* Background & Foreground */
+  --background: #ffffff;
+  --foreground: #212529;
+  --surface: #f8f9fa;
+  --border: #dee2e6;
+}
+
+@theme inline {
+  /* Map CSS variables to Tailwind classes */
+  --color-primary-*: initial;
+  --color-neutral-*: initial;
+  --color-success: var(--color-success);
+  --color-error: var(--color-error);
+  --color-warning: var(--color-warning);
+  --color-info: var(--color-info);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  /* 8px */
+  --spacing-sm: 0.75rem;
+  /* 12px */
+  --spacing-md: 1rem;
+  /* 16px */
+  --spacing-lg: 1.5rem;
+  /* 24px */
+  --spacing-xl: 2rem;
+  /* 32px */
+  --spacing-2xl: 3rem;
+  /* 48px */
+  --spacing-3xl: 4rem;
+  /* 64px */
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  /* 4px */
+  --radius-md: 0.375rem;
+  /* 6px */
+  --radius-lg: 0.5rem;
+  /* 8px */
+  --radius-xl: 0.75rem;
+  /* 12px */
+  --radius-2xl: 1rem;
+  /* 16px */
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Utilities */
+.btn-primary {
+  background-color: var(--color-primary-400);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-500);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-primary-400);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  border: 2px solid var(--color-primary-400);
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-primary-50);
+}
+
+.card {
+  background: var(--background);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary-400);
+  ring: 2px;
+  ring-color: var(--color-primary-100);
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+/* Loading States */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Skeleton Loader */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg,
+      var(--color-neutral-200) 25%,
+      var(--color-neutral-100) 50%,
+      var(--color-neutral-200) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-md);
+}
+
+/* ========================================
+   RESPONSIVE UTILITIES
+   ======================================== */
+
+/* Hide/Show by breakpoint */
+.hide-mobile {
+  display: block;
+}
+
+.show-mobile {
+  display: none;
+}
+
+/* Responsive Grid */
+.grid-responsive {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* Responsive Flex */
+.flex-responsive {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Responsive Text */
+.text-responsive-lg {
+  font-size: 2.5rem;
+}
+
+.text-responsive-md {
+  font-size: 1.5rem;
+}
+
+/* ========================================
+   MOBILE STYLES (< 768px)
+   ======================================== */
+@media (max-width: 767px) {
+
+  /* Hide/Show */
+  .hide-mobile {
+    display: none !important;
+  }
+
+  .show-mobile {
+    display: block !important;
+  }
+
+  /* Navigation responsive */
+  nav [style*="gap: 2rem"] {
+    gap: 1rem !important;
+  }
+
+  /* Main content padding */
+  main[style*="padding: 2rem"],
+  main[style*="padding: 3rem"] {
+    padding: 1rem !important;
+  }
+
+  /* Grid layouts - stack on mobile */
+  div[style*="gridTemplateColumns: '1fr 380px'"],
+  div[style*="gridTemplateColumns: '1fr 320px'"],
+  div[style*="grid-template-columns: 1fr 380px"],
+  div[style*="grid-template-columns: 1fr 320px"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Card grids - single column */
+  div[style*="gridTemplateColumns: repeat(auto-"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Admin sidebar - hide on mobile (show toggle) */
+  aside[style*="width: 260px"],
+  aside[style*="width: '260px'"] {
+    display: none !important;
+  }
+
+  main[style*="marginLeft: '260px'"],
+  main[style*="margin-left: 260px"] {
+    margin-left: 0 !important;
+  }
+
+  /* Modal sizing */
+  div[style*="maxWidth: '600px'"],
+  div[style*="max-width: 600px"],
+  div[style*="maxWidth: '500px'"],
+  div[style*="max-width: 500px"] {
+    max-width: calc(100vw - 2rem) !important;
+    margin: 1rem !important;
+  }
+
+  /* Responsive text */
+  .text-responsive-lg,
+  h1[style*="fontSize: '2.5rem'"],
+  h1[style*="font-size: 2.5rem"] {
+    font-size: 1.75rem !important;
+  }
+
+  .text-responsive-md,
+  h2[style*="fontSize: '1.5rem'"],
+  h2[style*="font-size: 1.5rem"] {
+    font-size: 1.25rem !important;
+  }
+
+  /* Flex direction change */
+  .flex-responsive {
+    flex-direction: column;
+  }
+
+  /* Form buttons - full width */
+  button[style*="width: '100%'"],
+  button[type="submit"] {
+    width: 100%;
+  }
+
+  /* Table horizontal scroll */
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  /* Sticky elements - reduce top offset */
+  div[style*="position: 'sticky'"],
+  div[style*="position: sticky"] {
+    position: relative !important;
+    top: auto !important;
+  }
+
+  /* Hero section */
+  section[style*="padding: '6rem 2rem'"],
+  section[style*="padding: 6rem 2rem"] {
+    padding: 3rem 1rem !important;
+  }
+
+  /* Footer grid */
+  footer div[style*="gridTemplateColumns"] {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+  }
+}
+
+/* ========================================
+   TABLET STYLES (768px - 1023px)
+   ======================================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  /* Two column grids on tablet */
+  div[style*="gridTemplateColumns: repeat(auto-fill, minmax(200px"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Sidebar narrower */
+  aside[style*="width: 260px"] {
+    width: 220px !important;
+  }
+
+  main[style*="marginLeft: '260px'"] {
+    margin-left: 220px !important;
+  }
+}
+
+/* ========================================
+   DESKTOP STYLES (1024px+) 
+   ======================================== */
+@media (min-width: 1024px) {
+
+  /* Restore grids */
+  .grid-responsive {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY ENHANCEMENTS
+   ======================================== */
+
+/* Focus visible styles */
+:focus-visible {
+  outline: 2px solid var(--color-primary-400);
+  outline-offset: 2px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Skip to main content link (screen readers) */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-primary-400);
+  color: white;
+  padding: 8px 16px;
+  z-index: 10000;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+
+  nav,
+  footer,
+  button,
+  aside {
+    display: none !important;
+  }
+
+  body {
+    color: black;
+    background: white;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
