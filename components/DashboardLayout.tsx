@@ -54,8 +54,8 @@ export function DashboardLayout({ children, title, showSidebar = true }: Dashboa
             {/* Navigation */}
             <nav style={{
                 backgroundColor: '#ffffff',
-                borderBottom: '1px solid #e9ecef',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+                borderBottom: '1px solid #f1f3f5',
+                boxShadow: '0 2px 12px rgba(0,0,0,0.04)',
                 position: 'sticky',
                 top: 0,
                 zIndex: 40
@@ -91,13 +91,15 @@ export function DashboardLayout({ children, title, showSidebar = true }: Dashboa
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                             <Link href="/sell" style={{
-                                backgroundColor: '#1ab35d',
+                                background: 'linear-gradient(135deg, #1ab35d 0%, #159549 100%)',
                                 color: '#ffffff',
-                                padding: '0.5rem 1rem',
-                                borderRadius: '8px',
+                                padding: '0.625rem 1.25rem',
+                                borderRadius: '10px',
                                 fontSize: '0.875rem',
                                 fontWeight: 600,
-                                textDecoration: 'none'
+                                textDecoration: 'none',
+                                boxShadow: '0 2px 8px rgba(26, 179, 93, 0.2)',
+                                transition: 'all 0.25s ease'
                             }} className="sell-btn">
                                 Sell Device
                             </Link>
@@ -195,7 +197,15 @@ export function DashboardLayout({ children, title, showSidebar = true }: Dashboa
                     {/* Desktop Sidebar */}
                     {showSidebar && (
                         <aside className="desktop-sidebar">
-                            <div style={{ backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #e9ecef', overflow: 'hidden', position: 'sticky', top: '80px' }}>
+                            <div style={{
+                                backgroundColor: '#ffffff',
+                                borderRadius: '16px',
+                                border: '1px solid #f1f3f5',
+                                overflow: 'hidden',
+                                position: 'sticky',
+                                top: '80px',
+                                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)'
+                            }}>
                                 {navItems.map((item) => {
                                     const Icon = item.icon
                                     const active = isActive(item.href)
@@ -207,13 +217,26 @@ export function DashboardLayout({ children, title, showSidebar = true }: Dashboa
                                                 display: 'flex',
                                                 alignItems: 'center',
                                                 gap: '0.75rem',
-                                                padding: '0.875rem 1rem',
+                                                padding: '0.9375rem 1.125rem',
                                                 color: active ? '#1ab35d' : '#495057',
                                                 textDecoration: 'none',
                                                 fontSize: '0.875rem',
-                                                fontWeight: active ? 600 : 400,
-                                                backgroundColor: active ? '#e6f7ed' : 'transparent',
-                                                borderBottom: '1px solid #e9ecef'
+                                                fontWeight: active ? 600 : 500,
+                                                backgroundColor: active ? 'rgba(26, 179, 93, 0.08)' : 'transparent',
+                                                borderBottom: '1px solid #f1f3f5',
+                                                transition: 'all 0.2s ease'
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                if (!active) {
+                                                    e.currentTarget.style.backgroundColor = '#fafbfc'
+                                                    e.currentTarget.style.color = '#1ab35d'
+                                                }
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                if (!active) {
+                                                    e.currentTarget.style.backgroundColor = 'transparent'
+                                                    e.currentTarget.style.color = '#495057'
+                                                }
                                             }}
                                         >
                                             <Icon size={18} />

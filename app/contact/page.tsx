@@ -36,9 +36,9 @@ export default function ContactPage() {
         <PublicLayout>
 
             {/* Hero */}
-            <section style={{ background: 'linear-gradient(135deg, #e6f7ed 0%, #f8f9fa 100%)', padding: '4rem 2rem' }}>
+            <section style={{ background: 'linear-gradient(135deg, #e6f7ed 0%, #f8f9fa 100%)', padding: '4rem 2rem' }} className="contact-hero">
                 <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-                    <h1 style={{ fontSize: '2.5rem', fontWeight: 700, color: '#212529', marginBottom: '1rem' }}>
+                    <h1 className="contact-title" style={{ fontSize: '2.5rem', fontWeight: 700, color: '#212529', marginBottom: '1rem' }}>
                         Contact Us
                     </h1>
                     <p style={{ fontSize: '1.125rem', color: '#6c757d' }}>
@@ -48,8 +48,8 @@ export default function ContactPage() {
             </section>
 
             {/* Content */}
-            <section style={{ padding: '4rem 2rem' }}>
-                <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '4rem', alignItems: 'start' }}>
+            <section style={{ padding: '4rem 2rem' }} className="contact-section">
+                <div className="contact-grid" style={{ maxWidth: '1000px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '4rem', alignItems: 'start' }}>
                     {/* Contact Info */}
                     <div>
                         <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#212529', marginBottom: '2rem' }}>
@@ -57,41 +57,59 @@ export default function ContactPage() {
                         </h2>
 
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                            <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                                <div style={{ width: '48px', height: '48px', borderRadius: '12px', backgroundColor: '#e6f7ed', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                                    <Mail size={24} style={{ color: '#1ab35d' }} />
-                                </div>
-                                <div>
-                                    <h3 style={{ fontWeight: 600, color: '#212529', marginBottom: '0.25rem' }}>Email</h3>
-                                    <a href="mailto:support@recyce.com" style={{ color: '#1ab35d', textDecoration: 'none' }}>support@recyce.com</a>
-                                </div>
-                            </div>
-
-                            <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                                <div style={{ width: '48px', height: '48px', borderRadius: '12px', backgroundColor: '#e6f7ed', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                                    <Phone size={24} style={{ color: '#1ab35d' }} />
-                                </div>
-                                <div>
-                                    <h3 style={{ fontWeight: 600, color: '#212529', marginBottom: '0.25rem' }}>Phone</h3>
-                                    <a href="tel:1-800-RECYCE" style={{ color: '#6c757d', textDecoration: 'none' }}>1-800-RECYCE</a>
-                                    <p style={{ fontSize: '0.875rem', color: '#adb5bd', marginTop: '0.25rem' }}>Mon-Fri 9am-6pm EST</p>
-                                </div>
-                            </div>
-
-                            <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                                <div style={{ width: '48px', height: '48px', borderRadius: '12px', backgroundColor: '#e6f7ed', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                                    <MapPin size={24} style={{ color: '#1ab35d' }} />
-                                </div>
-                                <div>
-                                    <h3 style={{ fontWeight: 600, color: '#212529', marginBottom: '0.25rem' }}>Address</h3>
-                                    <p style={{ color: '#6c757d' }}>123 Green Street<br />Eco City, EC 12345</p>
-                                </div>
-                            </div>
+                            {[
+                                { icon: Mail, title: 'Email', content: 'support@recyce.com', href: 'mailto:support@recyce.com', color: '#1ab35d' },
+                                { icon: Phone, title: 'Phone', content: '1-800-RECYCE', href: 'tel:1-800-RECYCE', sub: 'Mon-Fri 9am-6pm EST' },
+                                { icon: MapPin, title: 'Address', content: '123 Green Street<br/>Eco City, EC 12345' }
+                            ].map((item, idx) => {
+                                const Icon = item.icon
+                                return (
+                                    <div
+                                        key={idx}
+                                        style={{
+                                            display: 'flex',
+                                            gap: '1rem',
+                                            alignItems: 'flex-start',
+                                            padding: '1rem',
+                                            borderRadius: '14px',
+                                            transition: 'background 0.2s ease'
+                                        }}
+                                    >
+                                        <div style={{
+                                            width: '52px',
+                                            height: '52px',
+                                            borderRadius: '14px',
+                                            background: 'linear-gradient(135deg, #e6f7ed 0%, #d4f1e0 100%)',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            flexShrink: 0
+                                        }}>
+                                            <Icon size={24} style={{ color: '#1ab35d' }} />
+                                        </div>
+                                        <div>
+                                            <h3 style={{ fontWeight: 600, color: '#212529', marginBottom: '0.25rem' }}>{item.title}</h3>
+                                            {item.href ? (
+                                                <a href={item.href} style={{ color: item.color || '#6c757d', textDecoration: 'none', transition: 'color 0.2s' }}>{item.content}</a>
+                                            ) : (
+                                                <p style={{ color: '#6c757d' }} dangerouslySetInnerHTML={{ __html: item.content }} />
+                                            )}
+                                            {item.sub && <p style={{ fontSize: '0.875rem', color: '#adb5bd', marginTop: '0.25rem' }}>{item.sub}</p>}
+                                        </div>
+                                    </div>
+                                )
+                            })}
                         </div>
                     </div>
 
                     {/* Contact Form */}
-                    <div style={{ backgroundColor: '#f8f9fa', borderRadius: '16px', padding: '2rem' }}>
+                    <div style={{
+                        backgroundColor: '#fafbfc',
+                        borderRadius: '20px',
+                        padding: '2rem',
+                        border: '1px solid #f1f3f5',
+                        boxShadow: '0 4px 24px rgba(0, 0, 0, 0.03)'
+                    }}>
                         {success ? (
                             <div style={{ textAlign: 'center', padding: '2rem' }}>
                                 <div style={{ width: '64px', height: '64px', margin: '0 auto 1.5rem', backgroundColor: '#d3f9d8', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -170,13 +188,25 @@ export default function ContactPage() {
                                         gap: '0.5rem',
                                         backgroundColor: '#1ab35d',
                                         color: '#ffffff',
-                                        padding: '0.875rem',
-                                        borderRadius: '8px',
+                                        padding: '1rem',
+                                        borderRadius: '12px',
                                         border: 'none',
                                         fontSize: '1rem',
                                         fontWeight: 600,
                                         cursor: loading ? 'not-allowed' : 'pointer',
-                                        opacity: loading ? 0.7 : 1
+                                        opacity: loading ? 0.7 : 1,
+                                        boxShadow: '0 4px 16px rgba(26, 179, 93, 0.25)',
+                                        transition: 'all 0.25s cubic-bezier(0.22, 1, 0.36, 1)'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        if (!loading) {
+                                            e.currentTarget.style.transform = 'translateY(-2px)'
+                                            e.currentTarget.style.boxShadow = '0 8px 24px rgba(26, 179, 93, 0.35)'
+                                        }
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(0)'
+                                        e.currentTarget.style.boxShadow = '0 4px 16px rgba(26, 179, 93, 0.25)'
                                     }}
                                 >
                                     {loading ? <Loader2 size={20} style={{ animation: 'spin 1s linear infinite' }} /> : <Send size={20} />}
@@ -187,6 +217,25 @@ export default function ContactPage() {
                     </div>
                 </div>
             </section>
+
+            {/* Responsive Styles */}
+            <style jsx global>{`
+                @media (max-width: 768px) {
+                    .contact-hero {
+                        padding: 2.5rem 1rem !important;
+                    }
+                    .contact-title {
+                        font-size: 1.875rem !important;
+                    }
+                    .contact-section {
+                        padding: 2rem 1rem !important;
+                    }
+                    .contact-grid {
+                        grid-template-columns: 1fr !important;
+                        gap: 2rem !important;
+                    }
+                }
+            `}</style>
         </PublicLayout>
     )
 }

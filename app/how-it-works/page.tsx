@@ -58,19 +58,22 @@ export default function HowItWorksPage() {
                         const Icon = step.icon
                         return (
                             <div key={step.number} style={{ display: 'flex', gap: '2rem', marginBottom: index < steps.length - 1 ? '4rem' : 0, alignItems: 'flex-start' }}>
-                                {/* Step Number */}
-                                <div style={{ flexShrink: 0 }}>
+                                <div style={{
+                                    flexShrink: 0,
+                                    transition: 'transform 0.3s ease'
+                                }}>
                                     <div style={{
                                         width: '64px',
                                         height: '64px',
                                         borderRadius: '50%',
-                                        backgroundColor: '#1ab35d',
+                                        background: 'linear-gradient(135deg, #1ab35d 0%, #159549 100%)',
                                         color: '#ffffff',
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         fontSize: '1.5rem',
-                                        fontWeight: 700
+                                        fontWeight: 700,
+                                        boxShadow: '0 4px 16px rgba(26, 179, 93, 0.3)'
                                     }}>
                                         {step.number}
                                     </div>
@@ -106,27 +109,56 @@ export default function HowItWorksPage() {
             </section>
 
             {/* Trust Section */}
-            <section style={{ backgroundColor: '#f8f9fa', padding: '4rem 2rem' }}>
+            <section style={{ backgroundColor: '#fafbfc', padding: '4rem 2rem' }}>
                 <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
                     <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#212529', textAlign: 'center', marginBottom: '3rem' }}>
                         Why Trust Recyce?
                     </h2>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
-                        <div style={{ textAlign: 'center' }}>
-                            <ShieldCheck size={48} style={{ color: '#1ab35d', marginBottom: '1rem' }} />
-                            <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#212529', marginBottom: '0.5rem' }}>Data Protection</h3>
-                            <p style={{ color: '#6c757d' }}>We securely wipe all data from your devices following industry standards.</p>
-                        </div>
-                        <div style={{ textAlign: 'center' }}>
-                            <DollarSign size={48} style={{ color: '#1ab35d', marginBottom: '1rem' }} />
-                            <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#212529', marginBottom: '0.5rem' }}>Best Prices</h3>
-                            <p style={{ color: '#6c757d' }}>We offer competitive prices and price-match guarantees.</p>
-                        </div>
-                        <div style={{ textAlign: 'center' }}>
-                            <Recycle size={48} style={{ color: '#1ab35d', marginBottom: '1rem' }} />
-                            <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#212529', marginBottom: '0.5rem' }}>Eco-Friendly</h3>
-                            <p style={{ color: '#6c757d' }}>Devices are refurbished or responsibly recycled to minimize e-waste.</p>
-                        </div>
+                        {[
+                            { icon: ShieldCheck, title: 'Data Protection', desc: 'We securely wipe all data from your devices following industry standards.' },
+                            { icon: DollarSign, title: 'Best Prices', desc: 'We offer competitive prices and price-match guarantees.' },
+                            { icon: Recycle, title: 'Eco-Friendly', desc: 'Devices are refurbished or responsibly recycled to minimize e-waste.' }
+                        ].map((item, idx) => {
+                            const Icon = item.icon
+                            return (
+                                <div
+                                    key={idx}
+                                    style={{
+                                        textAlign: 'center',
+                                        padding: '2rem',
+                                        backgroundColor: '#ffffff',
+                                        borderRadius: '20px',
+                                        border: '1px solid #f1f3f5',
+                                        transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
+                                        cursor: 'default'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(-4px)'
+                                        e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.08)'
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(0)'
+                                        e.currentTarget.style.boxShadow = 'none'
+                                    }}
+                                >
+                                    <div style={{
+                                        width: '64px',
+                                        height: '64px',
+                                        borderRadius: '16px',
+                                        background: 'linear-gradient(135deg, #e6f7ed 0%, #d4f1e0 100%)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        margin: '0 auto 1.25rem'
+                                    }}>
+                                        <Icon size={32} style={{ color: '#1ab35d' }} />
+                                    </div>
+                                    <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#212529', marginBottom: '0.75rem' }}>{item.title}</h3>
+                                    <p style={{ color: '#6c757d', lineHeight: 1.6 }}>{item.desc}</p>
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
             </section>
@@ -140,18 +172,31 @@ export default function HowItWorksPage() {
                     <p style={{ color: 'rgba(255,255,255,0.9)', marginBottom: '2rem', fontSize: '1.125rem' }}>
                         Find out how much your device is worth in seconds.
                     </p>
-                    <Link href="/sell" style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.5rem',
-                        backgroundColor: '#ffffff',
-                        color: '#1ab35d',
-                        padding: '1rem 2rem',
-                        borderRadius: '10px',
-                        fontSize: '1rem',
-                        fontWeight: 600,
-                        textDecoration: 'none'
-                    }}>
+                    <Link
+                        href="/sell"
+                        style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                            backgroundColor: '#ffffff',
+                            color: '#1ab35d',
+                            padding: '1.125rem 2rem',
+                            borderRadius: '14px',
+                            fontSize: '1rem',
+                            fontWeight: 600,
+                            textDecoration: 'none',
+                            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.1)',
+                            transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)'
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = 'translateY(-3px) scale(1.02)'
+                            e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.15)'
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = 'translateY(0) scale(1)'
+                            e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.1)'
+                        }}
+                    >
                         Get Your Quote <ArrowRight size={20} />
                     </Link>
                 </div>

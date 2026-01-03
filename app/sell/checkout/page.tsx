@@ -223,7 +223,7 @@ export default function CheckoutPage() {
                 </div>
             </nav>
 
-            <main style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem' }}>
+            <main style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem' }} className="checkout-main">
                 <Link
                     href="/sell"
                     style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: '#6c757d', textDecoration: 'none', fontSize: '0.938rem', marginBottom: '2rem' }}
@@ -232,7 +232,7 @@ export default function CheckoutPage() {
                     Start Over
                 </Link>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 360px', gap: '2rem', alignItems: 'start' }}>
+                <div className="checkout-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 360px', gap: '2rem', alignItems: 'start' }}>
                     {/* Main Content */}
                     <div>
                         <h1 style={{ fontSize: '1.75rem', fontWeight: 700, color: '#212529', marginBottom: '2rem' }}>
@@ -496,8 +496,8 @@ export default function CheckoutPage() {
                         </div>
                     </div>
 
-                    {/* Summary Sidebar */}
-                    <div style={{
+                    {/* Sidebar Summary */}
+                    <div className="checkout-sidebar" style={{
                         position: 'sticky',
                         top: '100px',
                         backgroundColor: '#ffffff',
@@ -528,6 +528,24 @@ export default function CheckoutPage() {
                     </div>
                 </div>
             </main>
+
+            {/* Responsive Styles */}
+            <style jsx global>{`
+                @media (max-width: 768px) {
+                    .checkout-main {
+                        padding: 1rem !important;
+                    }
+                    .checkout-grid {
+                        grid-template-columns: 1fr !important;
+                        gap: 1.5rem !important;
+                    }
+                    .checkout-sidebar {
+                        order: -1;
+                        position: relative !important;
+                        top: 0 !important;
+                    }
+                }
+            `}</style>
         </div>
     )
 }

@@ -242,23 +242,34 @@ export default function AboutPage() {
                                     key={idx}
                                     style={{
                                         backgroundColor: '#ffffff',
-                                        borderRadius: '16px',
+                                        borderRadius: '20px',
                                         padding: '2rem',
-                                        border: '1px solid #e9ecef',
-                                        transition: 'all 0.3s'
+                                        border: '1px solid #f1f3f5',
+                                        transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
+                                        cursor: 'default'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(-6px)'
+                                        e.currentTarget.style.boxShadow = '0 16px 40px rgba(0, 0, 0, 0.08)'
+                                        e.currentTarget.style.borderColor = 'rgba(26, 179, 93, 0.2)'
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(0)'
+                                        e.currentTarget.style.boxShadow = 'none'
+                                        e.currentTarget.style.borderColor = '#f1f3f5'
                                     }}
                                 >
                                     <div style={{
-                                        width: '52px',
-                                        height: '52px',
+                                        width: '56px',
+                                        height: '56px',
                                         marginBottom: '1.25rem',
-                                        backgroundColor: '#e6f7ed',
-                                        borderRadius: '12px',
+                                        background: 'linear-gradient(135deg, #e6f7ed 0%, #d4f1e0 100%)',
+                                        borderRadius: '14px',
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center'
                                     }}>
-                                        <Icon size={26} style={{ color: '#1ab35d' }} />
+                                        <Icon size={28} style={{ color: '#1ab35d' }} />
                                     </div>
                                     <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#212529', marginBottom: '0.75rem' }}>
                                         {value.title}
@@ -291,15 +302,24 @@ export default function AboutPage() {
                         style={{
                             backgroundColor: '#1ab35d',
                             color: '#ffffff',
-                            padding: '1rem 2.5rem',
-                            borderRadius: '12px',
+                            padding: '1.125rem 2.5rem',
+                            borderRadius: '14px',
                             fontSize: '1.063rem',
                             fontWeight: 600,
                             textDecoration: 'none',
                             display: 'inline-flex',
                             alignItems: 'center',
                             gap: '0.5rem',
-                            boxShadow: '0 4px 16px rgba(26, 179, 93, 0.25)'
+                            boxShadow: '0 4px 16px rgba(26, 179, 93, 0.25)',
+                            transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)'
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = 'translateY(-3px) scale(1.02)'
+                            e.currentTarget.style.boxShadow = '0 8px 24px rgba(26, 179, 93, 0.35)'
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = 'translateY(0) scale(1)'
+                            e.currentTarget.style.boxShadow = '0 4px 16px rgba(26, 179, 93, 0.25)'
                         }}
                     >
                         Get Started Today

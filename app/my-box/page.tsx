@@ -35,7 +35,14 @@ export default function MyBoxPage() {
     return (
         <div style={{ minHeight: '100vh', backgroundColor: '#f8f9fa' }}>
             {/* Navigation */}
-            <nav style={{ backgroundColor: '#ffffff', borderBottom: '1px solid #e9ecef', position: 'sticky', top: 0, zIndex: 100 }}>
+            <nav style={{
+                backgroundColor: '#ffffff',
+                borderBottom: '1px solid #f1f3f5',
+                boxShadow: '0 2px 12px rgba(0,0,0,0.04)',
+                position: 'sticky',
+                top: 0,
+                zIndex: 100
+            }}>
                 <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '72px' }}>
                         <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
@@ -74,10 +81,11 @@ export default function MyBoxPage() {
                 {items.length === 0 ? (
                     <div style={{
                         backgroundColor: '#ffffff',
-                        borderRadius: '16px',
-                        border: '1px solid #e9ecef',
+                        borderRadius: '20px',
+                        border: '1px solid #f1f3f5',
                         padding: '4rem 2rem',
-                        textAlign: 'center'
+                        textAlign: 'center',
+                        boxShadow: '0 4px 24px rgba(0, 0, 0, 0.03)'
                     }}>
                         <Package size={64} style={{ color: '#adb5bd', marginBottom: '1.5rem' }} />
                         <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#212529', marginBottom: '0.75rem' }}>
@@ -90,20 +98,22 @@ export default function MyBoxPage() {
                             display: 'inline-flex',
                             alignItems: 'center',
                             gap: '0.5rem',
-                            backgroundColor: '#1ab35d',
+                            background: 'linear-gradient(135deg, #1ab35d 0%, #159549 100%)',
                             color: '#ffffff',
-                            padding: '0.875rem 1.5rem',
-                            borderRadius: '10px',
+                            padding: '0.875rem 1.75rem',
+                            borderRadius: '12px',
                             fontSize: '1rem',
                             fontWeight: 600,
-                            textDecoration: 'none'
+                            textDecoration: 'none',
+                            boxShadow: '0 4px 16px rgba(26, 179, 93, 0.25)',
+                            transition: 'all 0.25s ease'
                         }}>
                             <Plus size={20} />
                             Add a Device
                         </Link>
                     </div>
                 ) : (
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '2rem', alignItems: 'start' }}>
+                    <div className="mybox-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '2rem', alignItems: 'start' }}>
                         {/* Cart Items */}
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             {items.map((item) => (
@@ -111,12 +121,14 @@ export default function MyBoxPage() {
                                     key={item.id}
                                     style={{
                                         backgroundColor: '#ffffff',
-                                        borderRadius: '12px',
-                                        border: '1px solid #e9ecef',
+                                        borderRadius: '16px',
+                                        border: '1px solid #f1f3f5',
                                         padding: '1.25rem',
                                         display: 'flex',
                                         gap: '1rem',
-                                        alignItems: 'start'
+                                        alignItems: 'start',
+                                        boxShadow: '0 2px 12px rgba(0, 0, 0, 0.03)',
+                                        transition: 'all 0.25s ease'
                                     }}
                                 >
                                     {/* Device Image */}
@@ -328,6 +340,19 @@ export default function MyBoxPage() {
                     </div>
                 )}
             </div>
+
+            {/* Responsive Styles */}
+            <style jsx global>{`
+                @media (max-width: 768px) {
+                    .mybox-grid {
+                        grid-template-columns: 1fr !important;
+                        gap: 1.5rem !important;
+                    }
+                    .mybox-sidebar {
+                        order: 2;
+                    }
+                }
+            `}</style>
         </div>
     )
 }

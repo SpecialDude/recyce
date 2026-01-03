@@ -95,35 +95,39 @@ export default function UserOffersPage() {
             {/* Header with New Offer button */}
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem', marginTop: '-0.5rem' }}>
                 <Link href="/sell" style={{
-                    backgroundColor: '#1ab35d',
+                    background: 'linear-gradient(135deg, #1ab35d 0%, #159549 100%)',
                     color: '#ffffff',
-                    padding: '0.5rem 1rem',
-                    borderRadius: '8px',
+                    padding: '0.5rem 1.125rem',
+                    borderRadius: '10px',
                     fontSize: '0.813rem',
                     fontWeight: 600,
-                    textDecoration: 'none'
+                    textDecoration: 'none',
+                    boxShadow: '0 2px 8px rgba(26, 179, 93, 0.2)',
+                    transition: 'all 0.25s ease'
                 }}>
                     + New Offer
                 </Link>
             </div>
 
             {/* Filters */}
-            <div style={{ display: 'flex', gap: '0.375rem', marginBottom: '1rem', flexWrap: 'wrap', overflowX: 'auto', paddingBottom: '0.25rem' }}>
+            <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem', flexWrap: 'wrap', overflowX: 'auto', paddingBottom: '0.25rem' }}>
                 {['all', 'pending', 'accepted', 'rejected'].map((f) => (
                     <button
                         key={f}
                         onClick={() => setFilter(f)}
                         style={{
-                            padding: '0.375rem 0.75rem',
-                            borderRadius: '16px',
+                            padding: '0.5rem 1rem',
+                            borderRadius: '20px',
                             border: 'none',
                             backgroundColor: filter === f ? '#1ab35d' : '#ffffff',
                             color: filter === f ? '#ffffff' : '#495057',
                             fontSize: '0.813rem',
                             fontWeight: 500,
                             cursor: 'pointer',
-                            boxShadow: filter === f ? 'none' : '0 1px 3px rgba(0,0,0,0.1)',
-                            whiteSpace: 'nowrap'
+                            boxShadow: filter === f ? '0 4px 12px rgba(26, 179, 93, 0.25)' : '0 1px 4px rgba(0,0,0,0.06)',
+                            whiteSpace: 'nowrap',
+                            transition: 'all 0.25s cubic-bezier(0.22, 1, 0.36, 1)',
+                            transform: filter === f ? 'scale(1.02)' : 'scale(1)'
                         }}
                     >
                         {f.charAt(0).toUpperCase() + f.slice(1)}
@@ -132,7 +136,13 @@ export default function UserOffersPage() {
             </div>
 
             {/* Offers List */}
-            <div style={{ backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #e9ecef', overflow: 'hidden' }}>
+            <div style={{
+                backgroundColor: '#ffffff',
+                borderRadius: '16px',
+                border: '1px solid #f1f3f5',
+                overflow: 'hidden',
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)'
+            }}>
                 {filteredOffers.length === 0 ? (
                     <div style={{ padding: '2.5rem 1.5rem', textAlign: 'center', color: '#6c757d' }}>
                         <Package size={40} style={{ marginBottom: '0.75rem', opacity: 0.5 }} />

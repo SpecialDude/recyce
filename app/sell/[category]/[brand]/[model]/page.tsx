@@ -275,13 +275,15 @@ export default function DeviceConfigPage() {
                                             display: 'flex',
                                             alignItems: 'center',
                                             gap: '1rem',
-                                            padding: '1rem 1.25rem',
-                                            backgroundColor: selection.condition?.id === cond.id ? '#e6f7ed' : '#ffffff',
-                                            border: `2px solid ${selection.condition?.id === cond.id ? '#1ab35d' : '#e9ecef'}`,
-                                            borderRadius: '12px',
+                                            padding: '1.125rem 1.5rem',
+                                            backgroundColor: selection.condition?.id === cond.id ? 'rgba(26, 179, 93, 0.08)' : '#ffffff',
+                                            border: `1.5px solid ${selection.condition?.id === cond.id ? '#1ab35d' : '#f1f3f5'}`,
+                                            borderRadius: '14px',
                                             cursor: 'pointer',
                                             textAlign: 'left',
-                                            transition: 'all 0.2s'
+                                            transition: 'all 0.25s cubic-bezier(0.22, 1, 0.36, 1)',
+                                            boxShadow: selection.condition?.id === cond.id ? '0 4px 16px rgba(26, 179, 93, 0.12)' : '0 1px 3px rgba(0,0,0,0.02)',
+                                            transform: selection.condition?.id === cond.id ? 'translateY(-1px)' : 'translateY(0)'
                                         }}
                                     >
                                         <div style={{
@@ -318,13 +320,15 @@ export default function DeviceConfigPage() {
                                             key={carrier.id}
                                             onClick={() => setSelection(prev => ({ ...prev, carrier }))}
                                             style={{
-                                                padding: '1rem',
-                                                backgroundColor: selection.carrier?.id === carrier.id ? '#e6f7ed' : '#ffffff',
-                                                border: `2px solid ${selection.carrier?.id === carrier.id ? '#1ab35d' : '#e9ecef'}`,
-                                                borderRadius: '12px',
+                                                padding: '1.125rem',
+                                                backgroundColor: selection.carrier?.id === carrier.id ? 'rgba(26, 179, 93, 0.08)' : '#ffffff',
+                                                border: `1.5px solid ${selection.carrier?.id === carrier.id ? '#1ab35d' : '#f1f3f5'}`,
+                                                borderRadius: '14px',
                                                 cursor: 'pointer',
                                                 textAlign: 'center',
-                                                transition: 'all 0.2s'
+                                                transition: 'all 0.25s cubic-bezier(0.22, 1, 0.36, 1)',
+                                                boxShadow: selection.carrier?.id === carrier.id ? '0 4px 16px rgba(26, 179, 93, 0.12)' : '0 1px 3px rgba(0,0,0,0.02)',
+                                                transform: selection.carrier?.id === carrier.id ? 'scale(1.02)' : 'scale(1)'
                                             }}
                                         >
                                             <div style={{ fontWeight: 600, color: '#212529' }}>{carrier.variant_value}</div>
@@ -346,13 +350,15 @@ export default function DeviceConfigPage() {
                                             key={storage.id}
                                             onClick={() => setSelection(prev => ({ ...prev, storage }))}
                                             style={{
-                                                padding: '1rem',
-                                                backgroundColor: selection.storage?.id === storage.id ? '#e6f7ed' : '#ffffff',
-                                                border: `2px solid ${selection.storage?.id === storage.id ? '#1ab35d' : '#e9ecef'}`,
-                                                borderRadius: '12px',
+                                                padding: '1.125rem',
+                                                backgroundColor: selection.storage?.id === storage.id ? 'rgba(26, 179, 93, 0.08)' : '#ffffff',
+                                                border: `1.5px solid ${selection.storage?.id === storage.id ? '#1ab35d' : '#f1f3f5'}`,
+                                                borderRadius: '14px',
                                                 cursor: 'pointer',
                                                 textAlign: 'center',
-                                                transition: 'all 0.2s'
+                                                transition: 'all 0.25s cubic-bezier(0.22, 1, 0.36, 1)',
+                                                boxShadow: selection.storage?.id === storage.id ? '0 4px 16px rgba(26, 179, 93, 0.12)' : '0 1px 3px rgba(0,0,0,0.02)',
+                                                transform: selection.storage?.id === storage.id ? 'scale(1.02)' : 'scale(1)'
                                             }}
                                         >
                                             <div style={{ fontWeight: 600, color: '#212529' }}>{storage.variant_value}</div>
@@ -378,19 +384,21 @@ export default function DeviceConfigPage() {
                                     style={{
                                         display: 'flex',
                                         alignItems: 'center',
-                                        gap: '0.75rem',
-                                        padding: '1rem 1.5rem',
-                                        backgroundColor: selection.hasBox ? '#e6f7ed' : '#ffffff',
-                                        border: `2px solid ${selection.hasBox ? '#1ab35d' : '#e9ecef'}`,
-                                        borderRadius: '12px',
+                                        gap: '0.875rem',
+                                        padding: '1.125rem 1.5rem',
+                                        backgroundColor: selection.hasBox ? 'rgba(26, 179, 93, 0.08)' : '#ffffff',
+                                        border: `1.5px solid ${selection.hasBox ? '#1ab35d' : '#f1f3f5'}`,
+                                        borderRadius: '14px',
                                         cursor: 'pointer',
-                                        transition: 'all 0.2s'
+                                        transition: 'all 0.25s cubic-bezier(0.22, 1, 0.36, 1)',
+                                        boxShadow: selection.hasBox ? '0 4px 16px rgba(26, 179, 93, 0.12)' : '0 1px 3px rgba(0,0,0,0.02)',
+                                        transform: selection.hasBox ? 'scale(1.02)' : 'scale(1)'
                                     }}
                                 >
-                                    <Package size={24} style={{ color: selection.hasBox ? '#1ab35d' : '#6c757d' }} />
+                                    <Package size={24} style={{ color: selection.hasBox ? '#1ab35d' : '#6c757d', transition: 'color 0.2s' }} />
                                     <div style={{ textAlign: 'left' }}>
                                         <div style={{ fontWeight: 600, color: '#212529' }}>Original Box</div>
-                                        <div style={{ fontSize: '0.75rem', color: '#1ab35d' }}>+$5</div>
+                                        <div style={{ fontSize: '0.75rem', color: '#1ab35d', fontWeight: 500 }}>+$5</div>
                                     </div>
                                 </button>
 
@@ -399,19 +407,21 @@ export default function DeviceConfigPage() {
                                     style={{
                                         display: 'flex',
                                         alignItems: 'center',
-                                        gap: '0.75rem',
-                                        padding: '1rem 1.5rem',
-                                        backgroundColor: selection.hasCharger ? '#e6f7ed' : '#ffffff',
-                                        border: `2px solid ${selection.hasCharger ? '#1ab35d' : '#e9ecef'}`,
-                                        borderRadius: '12px',
+                                        gap: '0.875rem',
+                                        padding: '1.125rem 1.5rem',
+                                        backgroundColor: selection.hasCharger ? 'rgba(26, 179, 93, 0.08)' : '#ffffff',
+                                        border: `1.5px solid ${selection.hasCharger ? '#1ab35d' : '#f1f3f5'}`,
+                                        borderRadius: '14px',
                                         cursor: 'pointer',
-                                        transition: 'all 0.2s'
+                                        transition: 'all 0.25s cubic-bezier(0.22, 1, 0.36, 1)',
+                                        boxShadow: selection.hasCharger ? '0 4px 16px rgba(26, 179, 93, 0.12)' : '0 1px 3px rgba(0,0,0,0.02)',
+                                        transform: selection.hasCharger ? 'scale(1.02)' : 'scale(1)'
                                     }}
                                 >
-                                    <BatteryCharging size={24} style={{ color: selection.hasCharger ? '#1ab35d' : '#6c757d' }} />
+                                    <BatteryCharging size={24} style={{ color: selection.hasCharger ? '#1ab35d' : '#6c757d', transition: 'color 0.2s' }} />
                                     <div style={{ textAlign: 'left' }}>
                                         <div style={{ fontWeight: 600, color: '#212529' }}>Charger</div>
-                                        <div style={{ fontSize: '0.75rem', color: '#1ab35d' }}>+$5</div>
+                                        <div style={{ fontSize: '0.75rem', color: '#1ab35d', fontWeight: 500 }}>+$5</div>
                                     </div>
                                 </button>
                             </div>
@@ -423,10 +433,10 @@ export default function DeviceConfigPage() {
                         position: 'sticky',
                         top: '100px',
                         backgroundColor: '#ffffff',
-                        border: '1px solid #e9ecef',
-                        borderRadius: '16px',
-                        padding: '1.5rem',
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
+                        border: '1px solid #f1f3f5',
+                        borderRadius: '20px',
+                        padding: '1.75rem',
+                        boxShadow: '0 4px 24px rgba(0, 0, 0, 0.04)'
                     }}>
                         <h2 style={{ fontSize: '1.125rem', fontWeight: 600, color: '#212529', marginBottom: '1.5rem' }}>
                             Your Quote

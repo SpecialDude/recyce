@@ -126,35 +126,37 @@ export default function SellPage() {
                                     href={`/sell/${category.slug}`}
                                     style={{
                                         backgroundColor: '#ffffff',
-                                        border: '2px solid #e9ecef',
-                                        borderRadius: '16px',
+                                        border: '1px solid #f1f3f5',
+                                        borderRadius: '20px',
                                         padding: '2.5rem 2rem',
                                         textAlign: 'center',
                                         textDecoration: 'none',
-                                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                                        cursor: 'pointer'
+                                        transition: 'all 0.35s cubic-bezier(0.22, 1, 0.36, 1)',
+                                        cursor: 'pointer',
+                                        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)'
                                     }}
                                     onMouseEnter={(e) => {
-                                        e.currentTarget.style.borderColor = '#1ab35d'
-                                        e.currentTarget.style.transform = 'translateY(-4px)'
-                                        e.currentTarget.style.boxShadow = '0 12px 24px rgba(26, 179, 93, 0.12)'
+                                        e.currentTarget.style.borderColor = 'rgba(26, 179, 93, 0.3)'
+                                        e.currentTarget.style.transform = 'translateY(-6px)'
+                                        e.currentTarget.style.boxShadow = '0 16px 40px rgba(26, 179, 93, 0.12)'
                                     }}
                                     onMouseLeave={(e) => {
-                                        e.currentTarget.style.borderColor = '#e9ecef'
+                                        e.currentTarget.style.borderColor = '#f1f3f5'
                                         e.currentTarget.style.transform = 'translateY(0)'
-                                        e.currentTarget.style.boxShadow = 'none'
+                                        e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.02)'
                                     }}
                                 >
                                     <div style={{
                                         width: '80px',
                                         height: '80px',
                                         margin: '0 auto 1.5rem',
-                                        backgroundColor: '#e6f7ed',
-                                        borderRadius: '16px',
+                                        background: 'linear-gradient(135deg, #e6f7ed 0%, #d4f1e0 100%)',
+                                        borderRadius: '20px',
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
-                                        overflow: 'hidden'
+                                        overflow: 'hidden',
+                                        transition: 'transform 0.3s ease'
                                     }}>
                                         {category.icon_url ? (
                                             <img

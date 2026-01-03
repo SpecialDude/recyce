@@ -108,8 +108,8 @@ export default function DashboardPage() {
             {/* Navigation */}
             <nav style={{
                 backgroundColor: '#ffffff',
-                borderBottom: '1px solid #e9ecef',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.05)'
+                borderBottom: '1px solid #f1f3f5',
+                boxShadow: '0 2px 12px rgba(0,0,0,0.04)'
             }}>
                 <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '72px' }}>
@@ -124,13 +124,15 @@ export default function DashboardPage() {
                         </Link>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
                             <Link href="/sell" style={{
-                                backgroundColor: '#1ab35d',
+                                background: 'linear-gradient(135deg, #1ab35d 0%, #159549 100%)',
                                 color: '#ffffff',
-                                padding: '0.5rem 1.25rem',
-                                borderRadius: '8px',
+                                padding: '0.625rem 1.5rem',
+                                borderRadius: '10px',
                                 fontSize: '0.875rem',
                                 fontWeight: 600,
-                                textDecoration: 'none'
+                                textDecoration: 'none',
+                                boxShadow: '0 2px 8px rgba(26, 179, 93, 0.2)',
+                                transition: 'all 0.25s ease'
                             }}>
                                 Sell Device
                             </Link>
@@ -181,10 +183,42 @@ export default function DashboardPage() {
                     </h1>
                     {/* Quick Links */}
                     <div style={{ display: 'flex', gap: '0.75rem' }}>
-                        <Link href="/dashboard/profile" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem', backgroundColor: '#ffffff', border: '1px solid #e9ecef', borderRadius: '8px', color: '#495057', textDecoration: 'none', fontSize: '0.875rem' }}>
+                        <Link
+                            href="/dashboard/profile"
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.5rem',
+                                padding: '0.625rem 1.125rem',
+                                backgroundColor: '#ffffff',
+                                border: '1px solid #f1f3f5',
+                                borderRadius: '10px',
+                                color: '#495057',
+                                textDecoration: 'none',
+                                fontSize: '0.875rem',
+                                boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                                transition: 'all 0.25s ease'
+                            }}
+                        >
                             <User size={16} /> Profile
                         </Link>
-                        <Link href="/dashboard/settings" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem', backgroundColor: '#ffffff', border: '1px solid #e9ecef', borderRadius: '8px', color: '#495057', textDecoration: 'none', fontSize: '0.875rem' }}>
+                        <Link
+                            href="/dashboard/settings"
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.5rem',
+                                padding: '0.625rem 1.125rem',
+                                backgroundColor: '#ffffff',
+                                border: '1px solid #f1f3f5',
+                                borderRadius: '10px',
+                                color: '#495057',
+                                textDecoration: 'none',
+                                fontSize: '0.875rem',
+                                boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                                transition: 'all 0.25s ease'
+                            }}
+                        >
                             <Settings size={16} /> Settings
                         </Link>
                     </div>
@@ -199,9 +233,12 @@ export default function DashboardPage() {
                 }}>
                     <div style={{
                         backgroundColor: '#ffffff',
-                        borderRadius: '12px',
+                        borderRadius: '16px',
                         padding: '1.5rem',
-                        border: '1px solid #e9ecef'
+                        border: '1px solid #f1f3f5',
+                        boxShadow: '0 2px 12px rgba(0,0,0,0.03)',
+                        transition: 'all 0.25s ease',
+                        cursor: 'default'
                     }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                             <div style={{ width: '48px', height: '48px', borderRadius: '12px', backgroundColor: '#e6f7ed', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -216,9 +253,12 @@ export default function DashboardPage() {
 
                     <div style={{
                         backgroundColor: '#ffffff',
-                        borderRadius: '12px',
+                        borderRadius: '16px',
                         padding: '1.5rem',
-                        border: '1px solid #e9ecef'
+                        border: '1px solid #f1f3f5',
+                        boxShadow: '0 2px 12px rgba(0,0,0,0.03)',
+                        transition: 'all 0.25s ease',
+                        cursor: 'default'
                     }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                             <div style={{ width: '48px', height: '48px', borderRadius: '12px', backgroundColor: '#fff3cd', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -233,9 +273,12 @@ export default function DashboardPage() {
 
                     <div style={{
                         backgroundColor: '#ffffff',
-                        borderRadius: '12px',
+                        borderRadius: '16px',
                         padding: '1.5rem',
-                        border: '1px solid #e9ecef'
+                        border: '1px solid #f1f3f5',
+                        boxShadow: '0 2px 12px rgba(0,0,0,0.03)',
+                        transition: 'all 0.25s ease',
+                        cursor: 'default'
                     }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                             <div style={{ width: '48px', height: '48px', borderRadius: '12px', backgroundColor: '#d3f9d8', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -250,9 +293,12 @@ export default function DashboardPage() {
 
                     <div style={{
                         backgroundColor: '#ffffff',
-                        borderRadius: '12px',
+                        borderRadius: '16px',
                         padding: '1.5rem',
-                        border: '1px solid #e9ecef'
+                        border: '1px solid #f1f3f5',
+                        boxShadow: '0 2px 12px rgba(0,0,0,0.03)',
+                        transition: 'all 0.25s ease',
+                        cursor: 'default'
                     }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                             <div style={{ width: '48px', height: '48px', borderRadius: '12px', backgroundColor: '#e7f5ff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

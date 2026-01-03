@@ -123,9 +123,19 @@ export default function FAQPage() {
                                 width: '100%',
                                 padding: '1rem 1rem 1rem 3rem',
                                 border: '1px solid #e9ecef',
-                                borderRadius: '12px',
+                                borderRadius: '14px',
                                 fontSize: '1rem',
-                                backgroundColor: '#ffffff'
+                                backgroundColor: '#ffffff',
+                                transition: 'all 0.25s ease',
+                                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)'
+                            }}
+                            onFocus={(e) => {
+                                e.currentTarget.style.borderColor = '#1ab35d'
+                                e.currentTarget.style.boxShadow = '0 0 0 3px rgba(26, 179, 93, 0.1)'
+                            }}
+                            onBlur={(e) => {
+                                e.currentTarget.style.borderColor = '#e9ecef'
+                                e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.04)'
                             }}
                         />
                     </div>
@@ -142,14 +152,17 @@ export default function FAQPage() {
                                 key={cat}
                                 onClick={() => setSelectedCategory(cat)}
                                 style={{
-                                    padding: '0.5rem 1rem',
-                                    borderRadius: '20px',
+                                    padding: '0.625rem 1.25rem',
+                                    borderRadius: '25px',
                                     border: 'none',
-                                    backgroundColor: selectedCategory === cat ? '#1ab35d' : '#f8f9fa',
+                                    backgroundColor: selectedCategory === cat ? '#1ab35d' : '#ffffff',
                                     color: selectedCategory === cat ? '#ffffff' : '#495057',
                                     fontSize: '0.875rem',
                                     fontWeight: 500,
-                                    cursor: 'pointer'
+                                    cursor: 'pointer',
+                                    transition: 'all 0.25s cubic-bezier(0.22, 1, 0.36, 1)',
+                                    boxShadow: selectedCategory === cat ? '0 4px 12px rgba(26, 179, 93, 0.25)' : '0 1px 3px rgba(0,0,0,0.05)',
+                                    transform: selectedCategory === cat ? 'scale(1.02)' : 'scale(1)'
                                 }}
                             >
                                 {cat}
@@ -168,9 +181,12 @@ export default function FAQPage() {
                                 <div
                                     key={faq.id}
                                     style={{
-                                        backgroundColor: '#f8f9fa',
-                                        borderRadius: '12px',
-                                        overflow: 'hidden'
+                                        backgroundColor: '#ffffff',
+                                        borderRadius: '16px',
+                                        overflow: 'hidden',
+                                        border: '1px solid #f1f3f5',
+                                        transition: 'all 0.25s ease',
+                                        boxShadow: openId === faq.id ? '0 8px 24px rgba(0, 0, 0, 0.06)' : '0 1px 3px rgba(0,0,0,0.02)'
                                     }}
                                 >
                                     <button
@@ -184,7 +200,8 @@ export default function FAQPage() {
                                             background: 'none',
                                             border: 'none',
                                             cursor: 'pointer',
-                                            textAlign: 'left'
+                                            textAlign: 'left',
+                                            transition: 'background 0.2s'
                                         }}
                                     >
                                         <span style={{ fontWeight: 600, color: '#212529', fontSize: '1rem', paddingRight: '1rem' }}>
@@ -193,18 +210,22 @@ export default function FAQPage() {
                                         <ChevronDown
                                             size={20}
                                             style={{
-                                                color: '#6c757d',
+                                                color: openId === faq.id ? '#1ab35d' : '#6c757d',
                                                 flexShrink: 0,
                                                 transform: openId === faq.id ? 'rotate(180deg)' : 'none',
-                                                transition: 'transform 0.2s'
+                                                transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)'
                                             }}
                                         />
                                     </button>
-                                    {openId === faq.id && (
+                                    <div style={{
+                                        maxHeight: openId === faq.id ? '500px' : '0',
+                                        overflow: 'hidden',
+                                        transition: 'max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1)'
+                                    }}>
                                         <div style={{ padding: '0 1.5rem 1.25rem', color: '#495057', lineHeight: 1.7 }}>
                                             {faq.answer}
                                         </div>
-                                    )}
+                                    </div>
                                 </div>
                             ))
                         )}
@@ -221,16 +242,29 @@ export default function FAQPage() {
                     <p style={{ color: '#6c757d', marginBottom: '1.5rem' }}>
                         Can't find what you're looking for? Our support team is here to help.
                     </p>
-                    <Link href="/contact" style={{
-                        display: 'inline-block',
-                        backgroundColor: '#1ab35d',
-                        color: '#ffffff',
-                        padding: '0.875rem 2rem',
-                        borderRadius: '10px',
-                        fontSize: '1rem',
-                        fontWeight: 600,
-                        textDecoration: 'none'
-                    }}>
+                    <Link
+                        href="/contact"
+                        style={{
+                            display: 'inline-block',
+                            backgroundColor: '#1ab35d',
+                            color: '#ffffff',
+                            padding: '1rem 2rem',
+                            borderRadius: '14px',
+                            fontSize: '1rem',
+                            fontWeight: 600,
+                            textDecoration: 'none',
+                            boxShadow: '0 4px 16px rgba(26, 179, 93, 0.25)',
+                            transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)'
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = 'translateY(-2px)'
+                            e.currentTarget.style.boxShadow = '0 8px 24px rgba(26, 179, 93, 0.35)'
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = 'translateY(0)'
+                            e.currentTarget.style.boxShadow = '0 4px 16px rgba(26, 179, 93, 0.25)'
+                        }}
+                    >
                         Contact Support
                     </Link>
                 </div>
