@@ -1,0 +1,14 @@
+# Recyce Robots.txt
+# https://www.robotstxt.org/
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Disallow admin and authenticated areas
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://recyce.com/sitemap.xml

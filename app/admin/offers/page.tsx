@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { useToast } from '@/contexts/ToastContext'
@@ -20,6 +20,7 @@ import {
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { formatCurrency, formatDateShort } from '@/lib/utils'
+
 
 // Modal component
 function Modal({ isOpen, onClose, title, children }: { isOpen: boolean; onClose: () => void; title: string; children: React.ReactNode }) {
@@ -57,7 +58,7 @@ function Modal({ isOpen, onClose, title, children }: { isOpen: boolean; onClose:
     )
 }
 
-export default function AdminOffersPage() {
+function AdminOffersContent() {
     const { user, profile, loading: authLoading } = useAuth()
     const toast = useToast()
     const searchParams = useSearchParams()
@@ -562,5 +563,19 @@ export default function AdminOffersPage() {
                 )}
             </Modal>
         </AdminLayout>
+    )
+}
+
+export default function AdminOffersPage() {
+    return (
+        <Suspense fallback={
+            <AdminLayout>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '400px' }}>
+                    <Loader2 size={48} style={{ color: '#1ab35d', animation: 'spin 1s linear infinite' }} />
+                </div>
+            </AdminLayout>
+        }>
+            <AdminOffersContent />
+        </Suspense>
     )
 }

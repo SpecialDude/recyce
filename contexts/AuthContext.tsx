@@ -31,7 +31,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             setSession(session)
             setUser(session?.user ?? null)
             if (session?.user) {
-                fetchProfile(session.user.id)
+                fetchProfile(session.user)
             } else {
                 setLoading(false)
             }
@@ -44,7 +44,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             setSession(session)
             setUser(session?.user ?? null)
             if (session?.user) {
-                fetchProfile(session.user.id)
+                fetchProfile(session.user)
             } else {
                 setProfile(null)
                 setLoading(false)
@@ -54,15 +54,33 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return () => subscription.unsubscribe()
     }, [])
 
-    const fetchProfile = async (userId: string) => {
+    const fetchProfile = async (authUser: User) => {
         try {
             const { data, error } = await supabase
                 .from('profiles')
                 .select('*')
-                .eq('id', userId)
+                .eq('id', authUser.id)
                 .single()
 
             if (error) throw error
+
+            // Sync full_name from auth metadata if profile is missing it
+            // This handles the case where name was provided at signup but not synced
+            const metadataName = authUser.user_metadata?.full_name
+            if (metadataName && !data.full_name) {
+                const { data: updatedProfile, error: updateError } = await supabase
+                    .from('profiles')
+                    .update({ full_name: metadataName })
+                    .eq('id', authUser.id)
+                    .select()
+                    .single()
+
+                if (!updateError && updatedProfile) {
+                    setProfile(updatedProfile)
+                    return
+                }
+            }
+
             setProfile(data)
         } catch (error) {
             console.error('Error fetching profile:', error)
@@ -74,7 +92,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const signUp = async (email: string, password: string, fullName: string) => {
         try {
-            const { data, error } = await supabase.auth.signUp({
+            const { error } = await supabase.auth.signUp({
                 email,
                 password,
                 options: {
@@ -85,15 +103,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             })
 
             if (error) throw error
-
-            // Update profile with full name
-            if (data.user) {
-                await supabase
-                    .from('profiles')
-                    .update({ full_name: fullName })
-                    .eq('id', data.user.id)
-            }
-
             return { error: null }
         } catch (error) {
             return { error: error as Error }
